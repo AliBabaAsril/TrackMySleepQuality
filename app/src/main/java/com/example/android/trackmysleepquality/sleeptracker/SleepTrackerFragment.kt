@@ -45,14 +45,13 @@ class SleepTrackerFragment : Fragment() {
         // Get a reference to the binding object and inflate the fragment views.
         val binding: FragmentSleepTrackerBinding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_sleep_tracker, container, false)
-        //To get a reference to the DAO of the database
+
         val application = requireNotNull(this.activity).application
 
-        // Create an instance of the ViewModel Factory.
         val dataSource = SleepDatabase.getInstance(application).sleepDatabaseDao
+
         val viewModelFactory = SleepTrackerViewModelFactory(dataSource, application)
 
-        // Get a reference to the ViewModel associated with this fragment.
         val sleepTrackerViewModel =
             ViewModelProvider(
                 this, viewModelFactory).get(SleepTrackerViewModel::class.java)
